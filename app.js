@@ -2,7 +2,11 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 
+app.use(cors({credentials: true, origin: true}))
+
 const port = process.env.PORT || 80
+
+app.use(express.json({ extended: true }))
 
 app.get('/', (req, res) => {
     res.end('<h1>Home Page</h1>')
