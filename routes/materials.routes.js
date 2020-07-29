@@ -23,23 +23,30 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-router.put("/updateMaterial/:id", async (req, res) => {
+// router.put("/updateMaterial/:id", async (req, res) => {
+//     try {
+//         const material = await Material.findById({ _id: req.params.id });
+
+//         material.name = req.body.name,
+//         material.purchasePrice = req.body.purchasePrice,
+//         material.sellingPrice = req.body.sellingPrice
+
+//         await material.save()
+
+//         res.status(200).json({ message: "Материал обновлён!", resultCode: 0 })
+//     } catch (e) {
+//         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+//     }
+// })
+
+router.put('/updateMaterial/:id', async (req, res) => {
     try {
-
-        const material = await Material.findById({ _id: req.params.id });
-
-        material.name = req.body.name,
-        material.purchasePrice = req.body.purchasePrice,
-        material.sellingPrice = req.body.sellingPrice
-
-        await material.save()
-
-        res.status(200).json({ message: "Материал обновлён!", resultCode: 0 })
+        await Material.findByIdAndUpdate(req.params.id, req.body)
+        res.status(200).json({ message: "Модератор обновлен!" })
     } catch (e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
-
-})
+});
 
 //Добавление и удаление заданий
 router.post("/addMaterial", async (req, res) => {
