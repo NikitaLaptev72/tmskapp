@@ -8,13 +8,7 @@ const port = process.env.PORT || 80
 
 app.use(express.json({ extended: true }))
 
-app.get('/', (req, res) => {
-    res.end('<h1>Home Page</h1>')
-})
-
-app.get('/about', (req, res) => {
-    res.end('<h1>About Page</h1>')
-})
+app.use('/api/materials', require('./routes/materials.routes'))
 
 mongoose.connect(process.env.MONGODB_URL,{
     useNewUrlParser: true,
