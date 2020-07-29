@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-// const config = require('config')
-// const mongoose = require('mongoose')
+const mongoose = require('mongoose')
+const app = express()
 
 const port = process.env.PORT || 80
 
@@ -13,10 +13,15 @@ app.get('/about', (req, res) => {
     res.end('<h1>About Page</h1>')
 })
 
+mongoose.connect(process.env.MONGODB_URL,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+})
+
 app.listen(port, () => {
     console.log('Server has been started...')
 })
-
 
 
 // async function start()
