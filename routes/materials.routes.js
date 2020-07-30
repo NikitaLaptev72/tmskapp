@@ -36,8 +36,8 @@ router.put('/updateMaterial/:id', async (req, res) => {
 
 router.post("/addMaterial", async (req, res) => {
     try {
-        const newMaterial = new Material(req.body)
-        await newMaterial.save()
+        const material = new Material(req.body)
+        await material.save()
         res.status(201).json({ message: "Материал добавлен!"})
     } catch (e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })

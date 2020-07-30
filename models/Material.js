@@ -1,12 +1,12 @@
 const {Schema,model} = require('mongoose')
 
 const materialSchema = new Schema({
-    name: {type: String, required: true},
-    pictureLink: {type: String, required: true},
-    purchasePrice: {type: String, required: true},
-    sellingPrice: {type: String, required: true},
-    size: {type: String, required: true},
-    description: {type: String, required: true},
+    name: {type: String, required: true},//наименование материала
+    pictureLink: {type: String, required: true},//ссылка на изображение
+    purchasePrice: {type: String, required: true},//цена закупки
+    sellingPrice: {type: String, required: true},//цена продажи
+    size: {type: String, required: true},//размер
+    description: {type: String, required: true},//описание
     checkLink: {type: String, required: true}//ссылка на чек
 })
 

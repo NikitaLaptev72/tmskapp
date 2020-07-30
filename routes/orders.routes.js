@@ -1,12 +1,12 @@
 const { Router } = require('express')
 const router = Router()
-const Froze = require('../models/Froze')
+const Order = require('../models/Order')
 
 
-router.get("/getFrozes", async (req, res) => {
+router.get("/getOrders", async (req, res) => {
     try {
-        const frozes = await Froze.find().select("-__v");
-        res.send(frozes);
+        const orders = await Order.find().select("-__v");
+        res.send(orders);
     }
     catch (e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
@@ -15,37 +15,37 @@ router.get("/getFrozes", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     try {
-        const froze = await Froze.findById(req.params.id).select("-__v")
-        res.send(froze);
+        const order = await Order.findById(req.params.id).select("-__v")
+        res.send(order);
     }
     catch (e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
 });
 
-router.put('/updateFroze/:id', async (req, res) => {
+router.put('/updateOrder/:id', async (req, res) => {
     try {
-        await Froze.findByIdAndUpdate(req.params.id, req.body)
-        res.status(200).json({ message: "Замер обновлён!" })
+        await Order.findByIdAndUpdate(req.params.id, req.body)
+        res.status(200).json({ message: "Данные клиента обновлены!" })
     } catch (e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
 });
 
-router.post("/addFroze", async (req, res) => {
+router.post("/addOrder", async (req, res) => {
     try {
-        const froze = new Froze(req.body)
-        await froze.save()
-        res.status(201).json({ message: "Замер добавлен!"})
+        const order = new Order(req.body)
+        await order.save()
+        res.status(201).json({ message: "Данные клиента добавлены!"})
     } catch (e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
 });
 
-router.delete("/deleteFroze/:id", async (req, res) => {
+router.delete("/deleteOrder/:id", async (req, res) => {
     try {
-        await Froze.findByIdAndRemove({ _id: req.params.id })
-        res.status(200).json({ message: "Замер удалён!" })
+        await Order.findByIdAndRemove({ _id: req.params.id })
+        res.status(200).json({ message: "Данные клиента удалены!" })
     } catch (e) {
         res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
     }
