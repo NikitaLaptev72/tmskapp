@@ -10,6 +10,7 @@ const port = process.env.PORT || 80
 app.use(express.json({ extended: true }))
 
 app.use('/api/materials', require('./routes/materials.routes'))
+app.use('/api/materials', require('./routes/materials.routes'))
 
 mongoose.connect(process.env.MONGODB_URL,{
     useNewUrlParser: true,
